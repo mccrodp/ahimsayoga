@@ -150,8 +150,22 @@ handleRoute route ({ ready } as model) =
 view : Model -> Html Msg
 view model =
     Grid.container []
-        [ navigation model
+        [ header
+        , navigation model
         , div [ class "mt-3" ] [ content model ]
+        ]
+
+
+header : Html Msg
+header =
+    div []
+        [ H.h1 [ class "brand" ]
+            [ H.text "Ahimsa Yoga"
+            ]
+        , H.div []
+            [ div [ class "address-bar" ]
+                [ text ("Komatsu | Ishikawa, Japan") ]
+            ]
         ]
 
 
@@ -159,11 +173,10 @@ navigation : Model -> Html Msg
 navigation model =
     Navbar.config NavbarMsg
         |> Navbar.withAnimation
-        |> Navbar.brand (linkAttrs HomeR) [ text "Example" ]
         |> Navbar.items
             [ Navbar.itemLink (linkAttrs HomeR) [ text "Home" ]
-            , Navbar.itemLink (linkAttrs PostsR) [ text "Posts" ]
             , Navbar.itemLink (linkAttrs AboutR) [ text "About" ]
+            , Navbar.itemLink (linkAttrs PostsR) [ text "Contact" ]
             ]
         |> Navbar.view model.navbarState
 
@@ -205,7 +218,7 @@ notFound =
 
 home : Html Msg
 home =
-    div []
+    div [ class "box" ]
         [ H.h3 [ class "mb-2" ] [ text "Home" ]
         , H.p []
             [ H.a
@@ -217,7 +230,7 @@ home =
 
 about : Html Msg
 about =
-    Alert.info [ text "About page..." ]
+    div [ class "box" ] [ H.p [] [ text "About page..." ] ]
 
 
 loading : Html Msg
@@ -227,7 +240,7 @@ loading =
 
 post : Post -> Html Msg
 post post =
-    div []
+    div [ class "box" ]
         [ H.h3 [ class "mb-2" ] [ text post.title ]
         , H.p [] [ Markdown.toHtml [] post.body ]
         ]
@@ -239,7 +252,7 @@ posts posts =
         postLink post =
             H.li [] [ H.a (linkAttrs <| PostR post.id) [ text post.title ] ]
     in
-        div []
+        div [ class "box" ]
             [ H.h3 [ class "mb-2" ] [ text "Posts" ]
             , H.ul [] (List.map postLink posts)
             ]
