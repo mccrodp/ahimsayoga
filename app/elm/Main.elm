@@ -1,15 +1,11 @@
 module Main exposing (main)
 
-import Post exposing (Post)
 import Html as H exposing (Html, text, div)
 import Html.Attributes as A exposing (class)
 import Html.Events as E
-import Http
 import Json.Decode as JD
 import Navigation exposing (Location)
 import Routes exposing (Sitemap(..))
-import Task
-import Markdown
 import Bootstrap.Grid as Grid
 import Bootstrap.Navbar as Navbar
 import Bootstrap.Alert as Alert
@@ -38,8 +34,6 @@ type alias Model =
     { route : Sitemap
     , navbarState : Navbar.State
     , ready : Bool
-    , posts : List Post
-    , post : Maybe Post
     , error : Maybe String
     }
 
@@ -48,7 +42,6 @@ type Msg
     = RouteChanged Sitemap
     | RouteTo Sitemap
     | NavbarMsg Navbar.State
-    | Fetch (Result Http.Error (List Post))
 
 
 init : Location -> ( Model, Cmd Msg )
@@ -61,8 +54,6 @@ init location =
             { route = Routes.parsePath location
             , navbarState = navbarState
             , ready = False
-            , posts = []
-            , post = Nothing
             , error = Nothing
             }
 
@@ -99,17 +90,6 @@ update msg model =
         NavbarMsg state ->
             { model | navbarState = state } ! []
 
-        Fetch (Err error) ->
-            { model | error = Just (toString error) } ! []
-
-        Fetch (Ok posts) ->
-            handleRoute model.route
-                { model
-                    | ready = True
-                    , error = Nothing
-                    , posts = posts
-                }
-
 
 parseRoute : Location -> Msg
 parseRoute =
@@ -121,23 +101,8 @@ handleRoute route ({ ready } as model) =
     let
         newModel =
             { model | route = route }
-
-        fetchPosts =
-            Task.attempt Fetch Post.fetchPosts
     in
         case route of
-            PostsR ->
-                if ready then
-                    newModel ! []
-                else
-                    newModel ! [ fetchPosts ]
-
-            PostR id ->
-                if ready then
-                    { newModel | post = Post.lookupPost id newModel.posts } ! []
-                else
-                    newModel ! [ fetchPosts ]
-
             _ ->
                 newModel ! []
 
@@ -175,8 +140,8 @@ navigation model =
         |> Navbar.withAnimation
         |> Navbar.items
             [ Navbar.itemLink (linkAttrs HomeR) [ text "Home" ]
+            , Navbar.itemLink (linkAttrs ScheduleR) [ text "Schedule" ]
             , Navbar.itemLink (linkAttrs AboutR) [ text "About" ]
-            , Navbar.itemLink (linkAttrs PostsR) [ text "Contact" ]
             ]
         |> Navbar.view model.navbarState
 
@@ -187,22 +152,8 @@ content ({ route } as model) =
         HomeR ->
             home
 
-        PostsR ->
-            if model.ready then
-                posts model.posts
-            else
-                loading
-
-        PostR id ->
-            case ( model.ready, model.post ) of
-                ( False, _ ) ->
-                    loading
-
-                ( True, Nothing ) ->
-                    notFound
-
-                ( True, Just p ) ->
-                    post p
+        ScheduleR ->
+            schedule
 
         AboutR ->
             about
@@ -221,10 +172,7 @@ home =
     div [ class "box" ]
         [ H.h3 [ class "mb-2" ] [ text "Home" ]
         , H.p []
-            [ H.a
-                (linkAttrs <| PostR 123)
-                [ text "Click to fetch post #123 which doesn't exist" ]
-            ]
+            [ text "Click to fetch post #123 which doesn't exist" ]
         ]
 
 
@@ -233,29 +181,14 @@ about =
     div [ class "box" ] [ H.p [] [ text "About page..." ] ]
 
 
+schedule : Html Msg
+schedule =
+    div [ class "box" ] [ H.p [] [ text "Schedule page..." ] ]
+
+
 loading : Html Msg
 loading =
     Alert.warning [ text "Loading ..." ]
-
-
-post : Post -> Html Msg
-post post =
-    div [ class "box" ]
-        [ H.h3 [ class "mb-2" ] [ text post.title ]
-        , H.p [] [ Markdown.toHtml [] post.body ]
-        ]
-
-
-posts : List Post -> Html Msg
-posts posts =
-    let
-        postLink post =
-            H.li [] [ H.a (linkAttrs <| PostR post.id) [ text post.title ] ]
-    in
-        div [ class "box" ]
-            [ H.h3 [ class "mb-2" ] [ text "Posts" ]
-            , H.ul [] (List.map postLink posts)
-            ]
 
 
 linkAttrs : Sitemap -> List (H.Attribute Msg)

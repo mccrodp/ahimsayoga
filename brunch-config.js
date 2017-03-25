@@ -10,7 +10,7 @@ module.exports = {
       mainModules: ['app/elm/Main.elm'],
       outputFolder: 'public/js',
       /* '--debug' parameter activates Elm 0.18 history debugger */
-      makeParameters: '--debug'
+      // makeParameters: '--debug'
     },
     sass: {
       options: {
