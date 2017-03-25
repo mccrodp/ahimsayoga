@@ -9,6 +9,7 @@ import Routes exposing (Sitemap(..))
 import Bootstrap.Grid as Grid
 import Bootstrap.Navbar as Navbar
 import Bootstrap.Alert as Alert
+import Bootstrap.Grid.Col as Col
 
 
 -- Main
@@ -117,7 +118,8 @@ view model =
     Grid.container []
         [ header
         , navigation model
-        , div [ class "mt-3" ] [ content model ]
+        , div [ class "box" ] [ content model ]
+        , footer
         ]
 
 
@@ -162,6 +164,19 @@ content ({ route } as model) =
             notFound
 
 
+footer : Html Msg
+footer =
+    H.footer []
+        [ H.div [ class "container" ]
+            [ Grid.simpleRow
+                [ Grid.col
+                    [ Col.lg12, Col.attrs ([ A.class "text-center" ]) ]
+                    [ H.p [] [ text "Copyright © Your Website 2017" ] ]
+                ]
+            ]
+        ]
+
+
 notFound : Html Msg
 notFound =
     Alert.danger [ text "Page not found" ]
@@ -169,21 +184,32 @@ notFound =
 
 home : Html Msg
 home =
-    div [ class "box" ]
-        [ H.h3 [ class "mb-2" ] [ text "Home" ]
-        , H.p []
-            [ text "Click to fetch post #123 which doesn't exist" ]
+    div []
+        [ H.hr [] []
+        , H.h2 [ class "intro-text text-center" ] [ text "Home" ]
+        , H.hr [] []
+        , H.p [] [ text "Home page text" ]
         ]
 
 
 about : Html Msg
 about =
-    div [ class "box" ] [ H.p [] [ text "About page..." ] ]
+    div []
+        [ H.hr [] []
+        , H.h2 [ class "intro-text text-center" ] [ text "About" ]
+        , H.hr [] []
+        , H.p [] [ text "About page text" ]
+        ]
 
 
 schedule : Html Msg
 schedule =
-    div [ class "box" ] [ H.p [] [ text "Schedule page..." ] ]
+    div []
+        [ H.hr [] []
+        , H.h2 [ class "intro-text text-center" ] [ text "Schedule" ]
+        , H.hr [] []
+        , H.p [] [ text "Schedule page text" ]
+        ]
 
 
 loading : Html Msg
