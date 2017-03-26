@@ -23,28 +23,18 @@
   <link rel="stylesheet" href="css/app.css" charset="utf-8">
 </head>
 <body>
-  <style type="text/css">
-    body:before {
-      content: attr(message);
-    }
-  </style>
   <div id="elm-main"></div>
 
   <script src="js/main.js"></script>
   <script src="js/app.js"></script>
   <script>require('js/initialize');</script>
   <script>
+    // Work around for making SPA play nicely with GH Pages.
     (function(){
       var redirect = sessionStorage.redirect;
       delete sessionStorage.redirect;
       if (redirect && redirect != location.href) {
         history.replaceState(null, null, redirect);
-        // REMOVE THIS - just showing the redirect route in the UI
-        document.body.setAttribute('message', 'This page was redirected by 404.html, from the route: ' + redirect);
-      }
-      else {
-        // REMOVE THIS - just showing the redirect route in the UI
-        document.body.setAttribute('message', 'This page was loaded directly from the index.html file');
       }
     })();
   </script>
