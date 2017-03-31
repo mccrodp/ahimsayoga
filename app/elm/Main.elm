@@ -185,11 +185,33 @@ notFound =
 home : Html Msg
 home =
     div []
-        [ H.hr [] []
-        , H.h2 [ class "intro-text text-center" ] [ text "Home" ]
-        , H.hr [] []
-        , H.p [] [ text "Home page text" ]
+        [ Grid.simpleRow
+            [ Grid.col
+                [ Col.lg12, Col.attrs ([ A.class "text-center" ]) ]
+                [ H.h2 [ class "brand-before" ]
+                    [ H.small []
+                        [ text "Welcome To"
+                        ]
+                    ]
+                , H.h1 [ class "brand-name" ]
+                    [ text "Ahimsa Yoga" ]
+                , H.hr [ class "tagline-divider" ] []
+                , H.h2 []
+                    [ H.small []
+                        [ text "By Start Bootstrap"
+                        ]
+                    ]
+                ]
+            ]
         ]
+
+
+
+-- [ H.hr [] []
+-- , H.h2 [ class "intro-text text-center" ] [ text "Home" ]
+-- , H.hr [] []
+-- , H.p [] [ text "Home page text" ]
+-- ]
 
 
 about : Html Msg
