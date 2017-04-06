@@ -115,10 +115,10 @@ handleRoute route ({ ready } as model) =
 
 view : Model -> Html Msg
 view model =
-    Grid.container []
+    div []
         [ header
         , navigation model
-        , div [ class "box" ] [ content model ]
+        , Grid.container [] [ content model ]
         , footer
         ]
 
@@ -144,6 +144,7 @@ navigation model =
             [ Navbar.itemLink (linkAttrs HomeR) [ text "Home" ]
             , Navbar.itemLink (linkAttrs ScheduleR) [ text "Schedule" ]
             , Navbar.itemLink (linkAttrs AboutR) [ text "About" ]
+            , Navbar.itemLink (linkAttrs ContactR) [ text "Contact" ]
             ]
         |> Navbar.view model.navbarState
 
@@ -159,6 +160,9 @@ content ({ route } as model) =
 
         AboutR ->
             about
+
+        ContactR ->
+            contact
 
         NotFoundR ->
             notFound
@@ -187,7 +191,7 @@ home =
     div []
         [ Grid.simpleRow
             [ Grid.col
-                [ Col.lg12, Col.attrs ([ A.class "text-center" ]) ]
+                [ Col.lg12, Col.attrs ([ A.class "box text-center" ]) ]
                 [ H.h2 [ class "brand-before" ]
                     [ H.small []
                         [ text "Welcome To"
@@ -203,34 +207,110 @@ home =
                     ]
                 ]
             ]
-        ]
-
-
-
--- [ H.hr [] []
--- , H.h2 [ class "intro-text text-center" ] [ text "Home" ]
--- , H.hr [] []
--- , H.p [] [ text "Home page text" ]
--- ]
-
-
-about : Html Msg
-about =
-    div []
-        [ H.hr [] []
-        , H.h2 [ class "intro-text text-center" ] [ text "About" ]
-        , H.hr [] []
-        , H.p [] [ text "About page text" ]
+        , Grid.simpleRow
+            [ Grid.col
+                [ Col.lg12, Col.attrs ([ A.class "box text-center" ]) ]
+                [ H.hr [] []
+                , H.h2 [ class "intro-text text-center" ]
+                    [ text "BUILD A WEBSITE WORTH VISITING"
+                    ]
+                , H.hr [] []
+                , H.div []
+                    [ H.p []
+                        [ text "Loads of text..."
+                        ]
+                    ]
+                ]
+            ]
+        , Grid.simpleRow
+            [ Grid.col
+                [ Col.lg12, Col.attrs ([ A.class "box text-center" ]) ]
+                [ H.hr [] []
+                , H.h2 [ class "intro-text text-center" ]
+                    [ text "BEAUTIFUL BOXES TO SHOWCASE YOUR CONTENT"
+                    ]
+                , H.hr [] []
+                , H.div []
+                    [ H.p []
+                        [ text "Loads more text..."
+                        ]
+                    ]
+                ]
+            ]
         ]
 
 
 schedule : Html Msg
 schedule =
     div []
+        [ Grid.simpleRow
+            [ Grid.col
+                [ Col.lg12, Col.attrs ([ A.class "box text-center" ]) ]
+                [ H.h1 [ class "intro-text text-center" ]
+                    [ text "CLASS SCHEDULE" ]
+                , H.hr [] []
+                , H.div []
+                    [ text "Schedule info..."
+                    ]
+                ]
+            ]
+        , Grid.simpleRow
+            [ Grid.col
+                [ Col.lg12, Col.attrs ([ A.class "box text-center" ]) ]
+                [ H.hr [] []
+                , H.h2 [ class "intro-text text-center" ]
+                    [ text "CLASS INFO"
+                    ]
+                , H.hr [] []
+                , H.div []
+                    [ H.p []
+                        [ text "Loads of class info..."
+                        ]
+                    ]
+                ]
+            ]
+        ]
+
+
+about : Html Msg
+about =
+    div []
+        [ Grid.simpleRow
+            [ Grid.col
+                [ Col.lg12, Col.attrs ([ A.class "box text-center" ]) ]
+                [ H.h1 [ class "intro-text text-center" ]
+                    [ text "ABOUT US" ]
+                , H.hr [] []
+                , H.div []
+                    [ text "About us..."
+                    ]
+                ]
+            ]
+        , Grid.simpleRow
+            [ Grid.col
+                [ Col.lg12, Col.attrs ([ A.class "box text-center" ]) ]
+                [ H.hr [] []
+                , H.h2 [ class "intro-text text-center" ]
+                    [ text "MORE INFO"
+                    ]
+                , H.hr [] []
+                , H.div []
+                    [ H.p []
+                        [ text "Loads of about info..."
+                        ]
+                    ]
+                ]
+            ]
+        ]
+
+
+contact : Html Msg
+contact =
+    div [ class "box" ]
         [ H.hr [] []
-        , H.h2 [ class "intro-text text-center" ] [ text "Schedule" ]
+        , H.h2 [ class "intro-text text-center" ] [ text "Contact" ]
         , H.hr [] []
-        , H.p [] [ text "Schedule page text" ]
+        , H.p [] [ text "Contact page text" ]
         ]
 
 

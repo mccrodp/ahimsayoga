@@ -8,6 +8,7 @@ type Sitemap
     = HomeR
     | ScheduleR
     | AboutR
+    | ContactR
     | NotFoundR
 
 
@@ -26,9 +27,14 @@ aboutR =
     AboutR := static "about"
 
 
+contactR : Route Sitemap
+contactR =
+    ContactR := static "contact"
+
+
 sitemap : Router Sitemap
 sitemap =
-    router [ homeR, scheduleR, aboutR ]
+    router [ homeR, scheduleR, aboutR, contactR ]
 
 
 match : String -> Sitemap
@@ -48,6 +54,9 @@ toString r =
 
         AboutR ->
             reverse aboutR []
+
+        ContactR ->
+            reverse contactR []
 
         NotFoundR ->
             Debug.crash "cannot render NotFound"
