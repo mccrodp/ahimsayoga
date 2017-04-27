@@ -1,0 +1,613 @@
+/* ========================================================================
+ * General common styling
+ *
+ * ========================================================================
+ * Copyright 2016 Bootbites.com (unless otherwise stated)
+ * For license information see: http://bootbites.com/license
+ * ======================================================================== */
+
+@import '_variables';
+@import '_mixins';
+
+/* ==================================================
+  Custom
+  ================================================== */
+.location {
+  font-size: $font-size-large;
+  color: #fff;
+}
+
+/* ==================================================
+  Elements
+  ================================================== */
+
+.btn {
+    background-color: $color-primary;
+    font-family: $font-secondary;
+    font-weight: 800;
+    color: #fff;
+    padding: 15px 45px;
+    border-radius: 50px;
+    &:hover {
+        background-color: $color-secondary;
+        color: #fff;
+    }
+}
+.btn-ghost {
+    border: 3px solid #fff;
+    background-color: transparent;
+    &:hover {
+        background-color: #fff;
+        color: $color-primary;
+    }
+}
+section {
+    padding: 85px 0;
+}
+.card {
+    position: relative;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    margin: 0;
+    overflow: hidden;
+}
+a:hover {
+    text-decoration: none;
+}
+
+p{
+  a:hover {
+      text-decoration: underline;
+  }
+}
+
+.scrolltop {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: $color-primary;
+    color: #fff;
+    text-align: center;
+    font-size: 24px;
+    &:hover, &:active, &:focus {
+        color: #fff !important;
+        opacity: .75;
+    }
+}
+/* ==================================================
+  Header Styling
+  ================================================== */
+
+.hero {
+    position: relative;
+    background-image: url(../img/cover.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 50px 0;
+    color: #fff;
+    &:after {
+        content: '';
+        z-index: 0;
+        position: absolute;
+        background: rgba(0, 0, 0, .5);
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+    }
+    .container {
+        position: relative;
+        z-index: 1;
+    }
+}
+.hero-brand {
+    margin-bottom: 45px;
+    display: inline-block;
+    &:hover {
+        opacity: .75;
+    }
+}
+.tagline {
+    font-family: $font-primary;
+    font-size: $font-size-medium;
+    margin: 45px 0 75px 0;
+    color: #fff;
+}
+.navbar {
+    .navbar-toggler {
+        outline: none !important;
+        color: #fff;
+        font-size: 32px;
+        padding: 0;
+        margin-top: 4px;
+    }
+    border-radius: 0;
+    position: relative;
+    z-index: 500;
+    background-color: $color-primary;
+    padding: 0;
+    .navbar-brand {
+        margin-right: 45px;
+        padding: 0;
+        margin-top: 11px;
+    }
+    a {
+        font-family: $font-secondary;
+        font-weight: 400;
+        color: #fff;
+        &.nav-link {
+            padding: 20px 0;
+            margin-right: 15px;
+            position: relative;
+            &:before {
+                content: '';
+                position: absolute;
+                background-color: #fff;
+                width: 100%;
+                height: 3px;
+                bottom: 0;
+                opacity: 0;
+                visibility: hidden;
+            }
+            &:hover {
+                color: rgba(255, 255, 255, .75);
+            }
+            &:hover:before {
+                opacity: 1;
+                visibility: visible;
+            }
+        }
+    }
+}
+.social-nav {
+    margin-top: 14px;
+    a {
+        font-size: 24px;
+        margin-left: 15px;
+        &:hover {
+            color: rgba(255, 255, 255, .75);
+        }
+    }
+}
+/* ==================================================
+  About Styling
+  ================================================== */
+
+.about-text {
+  text-align: left;
+}
+
+.stats-row {
+    margin-top: 65px;
+}
+.stats-col {
+    .circle {
+        display: inline-block;
+        width: 160px;
+        height: 160px;
+        font-family: $font-primary;
+        font-weight: 500;
+        color: #666;
+        border: 6px solid $color-primary;
+        border-radius: 50%;
+        padding: 55px 25px 0 25px;
+        position: relative;
+        .stats-no {
+            color: #fff;
+            width: 70px;
+            height: 70px;
+            line-height: 70px;
+            top: -25px;
+            right: -15px;
+            font-family: $font-primary;
+            font-size: 18px;
+            background-color: $color-secondary;
+            position: absolute;
+            border-radius: 50%;
+            font-weight: 700;
+        }
+    }
+}
+/* ==================================================
+  Parallax Styling
+  ================================================== */
+
+.block {
+    color: #fff;
+    height: 490px;
+    overflow: hidden;
+    padding-top: 85px;
+    h2 {
+        text-transform: uppercase;
+        margin-bottom: 15px;
+    }
+    p {
+        color: #fff;
+        margin-bottom: 45px;
+    }
+}
+/* ==================================================
+  Features Styling
+  ================================================== */
+
+.features {
+    h2 {
+        color: $color-primary;
+    }
+    padding-top: 0;
+    padding-bottom: 45px;
+}
+.feature-col {
+    display: table;
+    padding-bottom: 45px;
+    > div > div {
+        display: table-cell;
+        vertical-align: middle;
+        &:last-child {
+            padding-left: 20px;
+        }
+    }
+    .feature-icon {
+        width: 70px;
+        height: 70px;
+        background: $color-primary;
+        color: #fff;
+        font-size: 24px;
+        text-align: center;
+        line-height: 70px;
+        border-radius: 50%;
+        display: inline-block;
+    }
+    h3 {
+        color: $color-primary;
+    }
+    p {
+        font-family: $font-secondary;
+        font-size: 14px;
+        color: #999;
+    }
+}
+/* ==================================================
+  Call-to-action Styling
+  ================================================== */
+
+.cta {
+    background-color: $color-primary;
+    padding: 25px 0;
+    h2 {
+        margin-bottom: 5px;
+    }
+    h2,
+    p {
+        color: #fff;
+    }
+    p {
+        margin-bottom: 0;
+        opacity: .75;
+    }
+    .btn-ghost {
+        position: relative;
+        top: 13px;
+    }
+}
+/* ==================================================
+  Portfolio Styling
+  ================================================== */
+
+.portfolio {
+    background-color: #edf6ff;
+    padding-bottom: 0;
+    h2 {
+        color: $color-primary;
+        margin-bottom: 25px;
+    }
+}
+.portfolio-grid {
+    margin-top: 65px;
+    .row {
+        margin: 0;
+    }
+    .row > div {
+        padding: 0;
+        .card {
+            img {
+                width: 100%;
+            }
+            .portfolio-over {
+                position: absolute;
+                display: table-cell;
+                vertical-align: middle;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, .8);
+                top: 0;
+                left: 0;
+                text-align: center;
+                opacity: 0;
+                visibility: hidden;
+                @include transition(all .3s ease);
+                > div {
+                    position: relative;
+                    top: 50%;
+                    transform: translateY(-50%);
+                }
+                .card-title {
+                    color: #fff;
+                    font-size: $font-size-large;
+                }
+                .card-text {
+                    color: #fff;
+                    opacity: .75;
+                    padding: 0 45px;
+                }
+            }
+            &:hover .portfolio-over {
+                opacity: 1;
+                visibility: visible;
+            }
+        }
+    }
+}
+/* ==================================================
+  Team Styling
+  ================================================== */
+
+.team {
+    h2 {
+        color: $color-primary;
+    }
+    .col-sm-3 {
+        padding: 0;
+    }
+    .card {
+        > a {
+            display: block;
+        }
+        img {
+            width: 100%;
+        }
+        h4 {
+            color: #fff;
+            text-transform: uppercase;
+        }
+        p {
+            font-size: 11px;
+            color: #fff;
+            opacity: .75;
+            margin: 0;
+            padding: 0 35px;
+        }
+        .social-nav {
+            margin-bottom: 45px;
+            a {
+                color: #fff;
+                font-size: 14px;
+                &:first-child {
+                    margin-left: 0;
+                }
+                &:hover {
+                    opacity: .75;
+                }
+            }
+        }
+        &:hover {
+            .team-over {
+                opacity: 1;
+                visibility: visible;
+            }
+            .card-title-wrap {
+                background-color: $color-primary;
+                .card-title, .card-text {
+                    color: #fff;
+                }
+            }
+        }
+    }
+    .team-over {
+        padding-top: 45px;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, .8);
+        top: 0;
+        left: 0;
+        text-align: center;
+        opacity: 0;
+        visibility: hidden;
+        @include transition(all .3s ease);
+    }
+    .card-title-wrap {
+        padding: 15px 25px;
+        position: relative;
+        z-index: 9;
+        background-color: #fff;
+        .card-title, .card-text {
+            font-family: $font-primary;
+            display: block;
+            margin: 0;
+        }
+        .card-title {
+            font-size: $font-size-sm-medium;
+            color: #333;
+        }
+        .card-text {
+            font-size: $font-size-small;
+            color: #999;
+        }
+    }
+}
+/* ==================================================
+  Footer Styling
+  ================================================== */
+
+.site-footer {
+    background-color: #102542;
+    padding: 65px 0 0 0;
+    h2, p {
+        color: #fff;
+    }
+    p {
+        opacity: .75;
+        line-height: 1.35*$line-height;
+    }
+    h2,
+    .btn {
+        margin-bottom: 25px;
+    }
+    .copyright-text {
+    a {
+      color: #fff;
+      &:hover {
+        opacity: 0.6;
+      }
+    }
+  }
+    .social-nav {
+        a {
+            color: #fff;
+            opacity: .25;
+            &:hover {
+                opacity: 1;
+            }
+        }
+    }
+    .bottom {
+        margin-top: 65px;
+        background-color: #0b1b32;
+        padding: 20px 0;
+        .list-inline, p {
+            margin: 0;
+        }
+        .list-inline {
+            position: relative;
+            top: 5px;
+            a {
+                color: #fff;
+                opacity: .25;
+                font-family: $font-secondary;
+                margin-right: 15px;
+                &:hover {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+}
+/* ==================================================
+  Responsive Styling
+  ================================================== */
+
+@media (max-width: 61.9em) {
+    section,
+    .block,
+    .cta {
+        padding: 35px 0;
+    }
+    .features {
+        padding-bottom: 5px;
+    }
+    p,
+    .block p {
+        margin: 0;
+    }
+    .about-text p {
+      margin: 0 0 10px 0;
+    }
+    .hero-brand {
+        margin-bottom: 35px;
+    }
+    .tagline {
+        margin: 35px 0;
+    }
+    h1 {
+        font-size: 32px;
+        margin: 0;
+    }
+    h2,
+    .tagline {
+        font-size: 24px;
+    }
+    h2 {
+        margin-bottom: 25px;
+    }
+    h3 {
+        font-size: 14px;
+    }
+    .hero {
+        padding: 75px 0;
+    }
+    .stats-col {
+        margin-bottom: 25px;
+    }
+    .block {
+        height: auto;
+    }
+    .feature-col {
+        padding-bottom: 30px;
+    }
+    .portfolio-grid {
+        .card {
+            h3.card-title {
+                font-size: $font-size-small !important;
+            }
+            .card-text {
+                font-size: 13px;
+            }
+        }
+    }
+    .team .team-over {
+        padding-top: 20px;
+    }
+    .team .card .social-nav {
+        margin-bottom: 15px;
+        padding: 0;
+    }
+    .site-footer {
+        .social-nav {
+            margin-bottom: 35px;
+        }
+        .list-inline {
+            text-align: center;
+            padding-bottom: 15px;
+            li {
+                display: inline-block;
+            }
+        }
+    }
+}
+@media (max-width: 767px) {
+    .navbar {
+        padding: 10px 0 !important;
+        .navbar-brand {
+            margin: 0;
+        }
+        #navbar-collapse {
+            padding-top: 10px;
+            float: left;
+            width: 100%;
+        }
+        .nav-item {
+            width: 100%;
+            margin: 0 !important;
+            a {
+                display: block;
+                padding: 10px 0;
+            }
+        }
+    }
+    .block {
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+}
+
+@media (max-width: 543px) {
+  .team .miki-bio {
+    clear: both;
+  }
+}

@@ -1,0 +1,51 @@
+//
+// Bootstrap 4 Bug Fixes
+// --------------------------------------------------
+
+// navbar-nav
+.navbar-nav {
+  @include clearfix;
+  
+  // nav-item on mobile
+  .nav-item {
+    float: none;
+  }
+
+  // dropdowns on mobile
+  .dropdown-menu {
+    position: static;
+    float: none;
+  }
+}
+
+// Desktop up navbar changes
+@mixin navbar-desktop-up() {
+  .navbar-nav .nav-item {
+    float: left;
+  }
+  .dropdown-menu {
+    position: absolute;
+    float: left;
+  }
+}
+
+// Navbar togglers (navbar-toggleable-X)
+// key to when dropdowns & navbars float etc
+// @see: https://github.com/twbs/bootstrap/issues/17250
+.navbar-toggleable {    
+  &-xs {
+    @include media-breakpoint-up(sm) {
+      @include navbar-desktop-up();
+    }
+  }
+  &-sm {
+    @include media-breakpoint-up(md) {
+      @include navbar-desktop-up(); 
+    }
+  }
+  &-md {
+    @include media-breakpoint-up(lg) {
+      @include navbar-desktop-up();
+    }
+  }
+}

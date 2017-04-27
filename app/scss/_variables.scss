@@ -1,0 +1,57 @@
+// -------------------------------------------------
+// Site Specific Variables
+// -------------------------------------------------
+
+// Example, group similar variables, only use variables for common colours & values
+// $all-lowercase: value;
+
+$font-primary: 'Raleway', Helvetica, Arial, sans-serif;
+$font-secondary: 'Roboto', Helvetica, Arial, sans-serif;
+$color-primary: #bc0b66;
+$color-secondary: #382d91;
+
+$font-size-x-large: 62px;
+$font-size-large: 30px;
+$font-size-medium: 26px;
+$font-size-sm-medium: 24px;
+$font-size-small: 18px;
+
+$line-height: 1.55;
+
+$link-color: #382d91;
+
+h1, h2, h3, h4, h5, h6{
+	font-family: $font-primary;
+}
+
+a {
+	color: $link-color;
+}
+
+p{
+	line-height: $line-height;
+	color: #333;
+	font-family: $font-primary;
+}
+
+h1{
+	font-size: $font-size-x-large;
+}
+
+h2{
+	font-size: $font-size-large;
+	margin-bottom: 65px;
+}
+
+h3{
+	font-size: $font-size-sm-medium;
+}
+
+h4{
+	font-size: $font-size-small;
+}
+
+
+th, td{
+	text-align: center;
+}
