@@ -2,3 +2,26 @@
 
 // customize Bootstrap styles here
 // ...
+body {
+  background: url(/img/bg.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+}
+
+@media (min-width: 768px){
+  .navbar-nav {
+    font-size: 17.5px;
+  }
+  .navbar-nav>li>a {
+      padding: 35px;
+  }
+}
+
+@media (min-width: 576px){
+  .navbar-toggleable .navbar-nav .nav-link {
+    padding-left: 35px;
+    padding-right: 35px;
+  }
+}

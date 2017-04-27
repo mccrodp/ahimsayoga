@@ -131,7 +131,7 @@ header =
             ]
         , H.div []
             [ div [ class "address-bar" ]
-                [ text ("Komatsu | Ishikawa, Japan") ]
+                [ text ("Shivam Yoga Center - Ishikawa, Japan") ]
             ]
         ]
 
